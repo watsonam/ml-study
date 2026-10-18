@@ -5,4 +5,7 @@ requires-python = ">=3.12"
 dependencies = [
     "islp>=0.4.1",
     "jupyter>=1.1.1",
+    "pyarrow>=26.0.0",
+    "pytest>=9.1.1",
+    "requests>=2.34.2",
 ]

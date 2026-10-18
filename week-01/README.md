@@ -1,23 +1,47 @@
-# Week 01: ISLP chapter 2
+# Week 01: How will I know a forecast is good?
+
+Before any model, build the thing that scores models. Every later week plugs into it.
 
 ## Reading (3 hours)
 
-Sections 2.1 and 2.2: what statistical learning is, prediction and inference, parametric and non-parametric methods, the bias-variance trade-off, and K-nearest neighbours (KNN).
+Hyndman, Forecasting: Principles and Practice, the Pythonic Way, chapter 5 (the forecaster's toolbox): https://otexts.com/fpppy/
 
-## Lab (1 hour)
+Focus on the simple methods (5.2), residuals (5.3 and 5.4), forecast accuracy measures (5.8) and time series cross-validation (5.10). Leave 5.9 (distributional accuracy) for week 6.
 
-Section 2.3, the Python lab. Type it out in `lab.ipynb` rather than copying.
+## The setup
 
-## Exercises (2 hours)
+Run `uv run python fetch.py` from the repo root. It writes `data/gb_imbalance.parquet`: one row per half-hour, with `start_utc`, `settlement_date`, `period` (1 to 48), `price` (GBP/MWh) and `niv` (net imbalance volume, MWh).
 
-Conceptual, written in `notes.md`: 1, 2, 3, 5 and 7. Exercise 7 is KNN by hand, so do it on paper first.
+The forecast is made at 12:00 UTC on day D-1, for all periods of day D.
 
-Applied, in `applied.py` or a notebook: 8 (College data) and 9 (Auto data).
+Split the year once, now, and do not change it:
 
-## Project (3 hours)
+- Validation: everything before the last 61 days. Backtest and compare models here.
+- Test: the last 61 days. Do not score anything on it until week 12.
 
-Pick one area. Pull a year of imbalance prices from the balancing-services app into `week-01/data/`. Plot it, and write three sentences on what you see.
+## From scratch (1.5 hours, AI off)
 
-## Notes (1 hour)
+Write `week-01/backtest.py` so that `uv run pytest week-01` passes. It needs:
 
-Fill in `notes.md`. Explain the bias-variance trade-off in five sentences without looking at the book.
+- `rolling_origin_splits(n_days, initial, horizon=1, step=1)` returns a list of `(train_idx, test_idx)` pairs of day indices. Training always ends before testing starts, and the training window grows by `step` each fold.
+- `mae(y, y_hat)` and `rmse(y, y_hat)` take PyTorch tensors and return a float.
+
+Use PyTorch tensors throughout, so the syntax becomes familiar from week 1.
+
+## Experiment (3.5 hours)
+
+Build three baselines and score each one with your backtest over the validation period:
+
+- Last known: every period of D gets the last price published before 12:00 on D-1.
+- Same period two days back: period p of D gets period p of D-2.
+- Same period a week back: period p of D gets period p of D-7.
+
+Log each one as a row in `experiments.md`. The best of the three is the number every model must beat from now on.
+
+## Write-up (2 hours)
+
+Fill in `writeup.md`. Include one chart of a validation week with the actual price and the best baseline.
+
+## The fiddly bit
+
+Two days a year do not have 48 periods. In this year of data, 26 October 2025 has 50 and 29 March 2026 has 46, because of the clock changes. Decide how your backtest and the "same period" baselines handle them, and write the decision down. Also check why "same period one day back" is missing from the list above, and what a 12:00 cut-off means for it.

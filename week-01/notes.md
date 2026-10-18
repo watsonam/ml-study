@@ -1,27 +1,13 @@
 # Week 01 notes
 
-## Prediction and inference
+## Simple forecasting methods
 
-## Parametric and non-parametric methods
+## Residuals and what good residuals look like
 
-## Flexibility and interpretability
+## Scale-dependent errors: MAE and RMSE
 
-## Training error and test error
+## Percentage and scaled errors, and why MAPE fails near zero prices
 
-## Bias-variance trade-off
+## Time series cross-validation
 
-## K-nearest neighbours
-
-## Exercise answers
-
-### 1
-
-### 2
-
-### 3
-
-### 5
-
-### 7
-
-## Project observations
+## Five-sentence explanation: why a random train/test split is wrong for a forecast
