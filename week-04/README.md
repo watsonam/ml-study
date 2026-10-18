@@ -6,7 +6,7 @@ None. This week is error analysis.
 
 ## From scratch (1.5 hours, AI off)
 
-A function that slices backtest errors by period of day, weekday, month, and price above the 95th percentile. Then timed drill 1: 45 minutes, no AI, for example the backward pass of a linear layer.
+Compute the error slices with boolean masks and `index_add_` for the group means. Then timed drill 1: 45 minutes, no AI, for example the backward pass of a linear layer.
 
 ## Experiment (3.5 hours)
 

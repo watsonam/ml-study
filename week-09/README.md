@@ -6,7 +6,7 @@ Karpathy videos 2 (makemore, bigrams) and 3 (MLP).
 
 ## From scratch (1.5 hours, AI off)
 
-An MLP training loop in PyTorch without `nn.Module`: tensors for the weights, a manual forward pass, `loss.backward()` and an optimiser step.
+An MLP training loop in PyTorch without `nn.Module`: weight tensors, a manual forward pass, `loss.backward()`. Write SGD with momentum and Adam yourself, check them against `torch.optim`, and add a learning rate schedule.
 
 ## Experiment (3.5 hours)
 

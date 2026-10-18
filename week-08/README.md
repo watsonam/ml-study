@@ -2,11 +2,11 @@
 
 ## Reading (3 hours)
 
-Karpathy, Neural Networks: Zero to Hero, video 1 (micrograd), with the CS231n backprop notes.
+Karpathy, Neural Networks: Zero to Hero, video 1 (micrograd), with the CS231n backprop notes. Maths: Bishop 5.3 (error backpropagation), about 30 minutes.
 
 ## From scratch (1.5 hours, AI off)
 
-Micrograd in numpy from memory: a scalar value class with add, multiply, tanh and backward. Then timed drill 2.
+Micrograd in numpy from memory: a scalar value class with add, multiply, tanh and backward. Check its gradients against PyTorch autograd on the same expression. Then timed drill 2.
 
 ## Experiment (3.5 hours)
 

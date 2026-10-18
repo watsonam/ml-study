@@ -1,12 +1,12 @@
-# Week 05: Can trees catch the spikes?
+# Week 05: Can trees catch the spikes, and can I predict a spike?
 
 ## Reading (3 hours)
 
-ISLP chapter 8 (trees, bagging, random forests, boosting).
+ISLP chapter 8 (trees, bagging, random forests, boosting). Maths: ISLP 4.3 (logistic regression) and Bishop 4.3 (probabilistic discriminative models), about 1 hour.
 
 ## From scratch (1.5 hours, AI off)
 
-One decision tree split: given a feature column and targets, find the threshold that most reduces squared error.
+Logistic regression in PyTorch for "will day D have a period above the 95th percentile?": a linear layer as tensors, sigmoid, and binary cross-entropy written by hand, checked against `F.binary_cross_entropy_with_logits`. Then one decision tree split, using `cumsum` to score every threshold at once.
 
 ## Experiment (3.5 hours)
 

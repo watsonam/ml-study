@@ -6,7 +6,7 @@ None. This week is review.
 
 ## From scratch (1.5 hours, AI off)
 
-Redo three earlier from-scratch pieces from a blank file. Then timed drill 3.
+Redo three earlier from-scratch pieces from a blank file. Load the saved model in a fresh process and produce one forecast. Then timed drill 3.
 
 ## Experiment (3.5 hours)
 

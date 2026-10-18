@@ -2,11 +2,11 @@
 
 ## Reading (3 hours)
 
-ISLP chapter 2, sections 2.1 to 2.3 (lab). Conceptual exercises 1, 2, 3, 5 and 7 go in `notes.md`; applied exercises 8 and 9 start from `applied.py`.
+ISLP chapter 2, sections 2.1 to 2.3 (lab). Conceptual exercises 1, 2, 3, 5 and 7 go in `notes.md`; applied exercises 8 and 9 start from `applied.py`. Maths: Bishop 1.2 (probability theory), about 30 minutes.
 
 ## From scratch (1.5 hours, AI off)
 
-`features.py`: lag features for day D built only from data published before 12:00 UTC on D-1. Write a test that builds a feature from the D-1 afternoon on purpose and fails.
+Build the lag features as tensor slices. `torch.roll` wraps the end of the series round to the start, so try it once and watch the leakage test catch it.
 
 ## Experiment (3.5 hours)
 

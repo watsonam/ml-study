@@ -2,11 +2,11 @@
 
 ## Reading (3 hours)
 
-ISLP chapter 3 (linear regression) and chapter 6, sections 6.1 and 6.2 (ridge and lasso).
+ISLP chapter 3 (linear regression) and chapter 6, sections 6.1 and 6.2 (ridge and lasso). Maths: Bishop 3.1 (linear basis function models), about 30 minutes.
 
 ## From scratch (1.5 hours, AI off)
 
-Ridge regression trained by gradient descent in PyTorch, checked against scikit-learn's `Ridge` on the same features.
+Solve least squares with `torch.linalg.lstsq`. Then fit the same model by gradient descent: weights with `requires_grad=True`, `loss.backward()`, a manual update inside `torch.no_grad()`, and `grad.zero_()`. Finally swap the manual update for `torch.optim.SGD` and add the ridge penalty. Check all three against scikit-learn's `Ridge`.
 
 ## Experiment (3.5 hours)
 

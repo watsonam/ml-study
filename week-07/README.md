@@ -6,7 +6,7 @@ Hyndman chapter 8 (exponential smoothing) and chapter 9 (ARIMA).
 
 ## From scratch (1.5 hours, AI off)
 
-Holt-Winters exponential smoothing with a daily season of 48 periods.
+Holt-Winters as a PyTorch recursion over the series. Fit its three smoothing parameters with `torch.optim.Adam`, keeping each between 0 and 1 by passing an unconstrained tensor through `sigmoid`.
 
 ## Experiment (3.5 hours)
 

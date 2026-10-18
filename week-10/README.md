@@ -6,7 +6,7 @@ Karpathy video 4 (activations, gradients, BatchNorm).
 
 ## From scratch (1.5 hours, AI off)
 
-BatchNorm forward and backward in numpy, checked against PyTorch.
+BatchNorm forward and backward in numpy, checked against PyTorch. Then rewrite the week 9 model with `nn.Module`, a `Dataset` and a `DataLoader`, and save and reload it with `state_dict`.
 
 ## Experiment (3.5 hours)
 

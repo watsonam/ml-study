@@ -6,7 +6,7 @@ Hyndman chapter 5.9 (distributional accuracy: quantile scores, Winkler score, CR
 
 ## From scratch (1.5 hours, AI off)
 
-Pinball loss for a given quantile, and split-conformal intervals around any point forecast.
+Pinball loss as a PyTorch function. Train a linear model on it with three outputs, one per quantile. Then split-conformal intervals around any point forecast.
 
 ## Experiment (3.5 hours)
 

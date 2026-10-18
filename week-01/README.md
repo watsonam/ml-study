@@ -8,6 +8,8 @@ Hyndman, Forecasting: Principles and Practice, the Pythonic Way, chapter 5 (the 
 
 Focus on the simple methods (5.2), residuals (5.3 and 5.4), forecast accuracy measures (5.8) and time series cross-validation (5.10). Leave 5.9 (distributional accuracy) for week 6.
 
+Maths: Bishop 1.1 (polynomial curve fitting), about 30 minutes. It is the clearest short account of overfitting.
+
 ## The setup
 
 Run `uv run python fetch.py` from the repo root. It writes `data/gb_imbalance.parquet`: one row per half-hour, with `start_utc`, `settlement_date`, `period` (1 to 48), `price` (GBP/MWh) and `niv` (net imbalance volume, MWh).
@@ -26,7 +28,7 @@ Write `week-01/backtest.py` so that `uv run pytest week-01` passes. It needs:
 - `rolling_origin_splits(n_days, initial, horizon=1, step=1)` returns a list of `(train_idx, test_idx)` pairs of day indices. Training always ends before testing starts, and the training window grows by `step` each fold.
 - `mae(y, y_hat)` and `rmse(y, y_hat)` take PyTorch tensors and return a float.
 
-Use PyTorch tensors throughout, so the syntax becomes familiar from week 1.
+Use PyTorch throughout, with no pandas or numpy in `backtest.py`. The skills for this week are creating tensors with `torch.tensor` and `torch.arange`, dtypes (`float32` against `float64`), indexing and slicing, and `.item()`.
 
 ## Experiment (3.5 hours)
 
@@ -35,6 +37,8 @@ Build three baselines and score each one with your backtest over the validation 
 - Last known: every period of D gets the last price published before 12:00 on D-1.
 - Same period two days back: period p of D gets period p of D-2.
 - Same period a week back: period p of D gets period p of D-7.
+
+Load the parquet file with pandas, then move the prices into a tensor and `view` it as days by 48 periods. Each baseline is then one line of tensor indexing, and broadcasting scores all days at once. The clock-change days break the `view`, which is why the fiddly bit below matters.
 
 Log each one as a row in `experiments.md`. The best of the three is the number every model must beat from now on.
 

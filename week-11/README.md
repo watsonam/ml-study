@@ -6,7 +6,7 @@ Hyndman, Pythonic Way, chapter 15 (foundation forecasting models).
 
 ## From scratch (1.5 hours, AI off)
 
-Chronos's preprocessing: scale a series by its mean absolute value and bin it into tokens, then turn tokens back into prices.
+Chronos's preprocessing in PyTorch: scale a series by its mean absolute value and bin it into tokens, then turn tokens back into prices. Run the pretrained model under `torch.inference_mode()`.
 
 ## Experiment (3.5 hours)
 
