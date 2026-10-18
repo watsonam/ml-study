@@ -12,6 +12,12 @@
 
 ## K-nearest neighbours
 
+## Maximum likelihood
+
+## Normal and Student-t distributions, and fat tails
+
+## The bootstrap
+
 ## Exercise answers
 
 ### 1
@@ -24,4 +30,4 @@
 
 ### 7
 
-## Project observations
+## Observations about the price distribution

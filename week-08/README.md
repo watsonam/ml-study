@@ -1,16 +1,16 @@
-# Week 08: How does a neural net learn?
+# Week 08: How uncertain is the price?
 
 ## Reading (3 hours)
 
-Karpathy, Neural Networks: Zero to Hero, video 1 (micrograd), with the CS231n backprop notes. Maths: Bishop 5.3 (error backpropagation), about 30 minutes.
+Hyndman section 5.9 (distributional accuracy: quantile scores, Winkler score, CRPS). The arch documentation on univariate volatility models, for GARCH: https://arch.readthedocs.io/en/latest/univariate/introduction.html
 
 ## From scratch (1.5 hours, AI off)
 
-Micrograd in numpy from memory: a scalar value class with add, multiply, tanh and backward. Check its gradients against PyTorch autograd on the same expression. Then timed drill 2.
+Pinball loss as a PyTorch function, and a linear quantile regression trained on it with three outputs (10th, 50th, 90th percentiles). Split-conformal intervals around any point forecast. Then GARCH(1,1) fitted by maximum likelihood with autograd, checked against the `arch` package.
 
 ## Experiment (3.5 hours)
 
-Train your micrograd MLP on a small slice of the price data, and compare it with PyTorch on the same slice.
+Report pinball loss and the share of actual prices inside each 80% interval. Fit GARCH to the residuals of your best point forecast, and check whether high-volatility days cluster. Then do problem set 2: Blitzstein and Hwang chapters 5 to 7 (continuous distributions, moments, joint distributions).
 
 ## Write-up (2 hours)
 
@@ -18,4 +18,4 @@ Train your micrograd MLP on a small slice of the price data, and compare it with
 
 ## The fiddly bit
 
-Gradients add up when a value is used twice. Forgetting `+=` is the classic micrograd bug.
+Conformal intervals assume the calibration days look like the test days. Price regimes shift, so check coverage month by month.

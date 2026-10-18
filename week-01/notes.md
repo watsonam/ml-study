@@ -10,4 +10,8 @@
 
 ## Time series cross-validation
 
+## Fitting by minimising squared error (Bishop 1.1)
+
+## Overfitting, and how training and test error behave as a model gets more flexible
+
 ## Five-sentence explanation: why a random train/test split is wrong for a forecast

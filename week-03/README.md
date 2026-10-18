@@ -1,16 +1,16 @@
-# Week 03: Can a linear model beat the baseline?
+# Week 03: Can a linear model beat the baseline, and which inputs matter?
 
 ## Reading (3 hours)
 
-ISLP chapter 3 (linear regression) and chapter 6, sections 6.1 and 6.2 (ridge and lasso). Maths: Bishop 3.1 (linear basis function models), about 30 minutes.
+ISLP chapter 3 (linear regression) and section 6.2 (ridge and lasso).
 
 ## From scratch (1.5 hours, AI off)
 
-Solve least squares with `torch.linalg.lstsq`. Then fit the same model by gradient descent: weights with `requires_grad=True`, `loss.backward()`, a manual update inside `torch.no_grad()`, and `grad.zero_()`. Finally swap the manual update for `torch.optim.SGD` and add the ridge penalty. Check all three against scikit-learn's `Ridge`.
+Least squares in PyTorch with `torch.linalg.lstsq`, plus standard errors from the residual variance and the inverse of X transpose X. Check the coefficients and standard errors against statsmodels' `OLS`. Then ridge, solved in closed form.
 
 ## Experiment (3.5 hours)
 
-Fit linear regression, then ridge, on week 2's features. Score both in the backtest against the best baseline.
+Regress day D's price on same period D-2, same period D-7, period of day and weekday, using only training folds. Read the coefficient table: which inputs matter, and by how much? Score linear regression and ridge in the backtest against the best baseline.
 
 ## Write-up (2 hours)
 
@@ -18,4 +18,4 @@ Fit linear regression, then ridge, on week 2's features. Score both in the backt
 
 ## The fiddly bit
 
-Ridge penalises large weights, so features on bigger scales are penalised less. Standardise using statistics from the training fold only.
+The residuals are autocorrelated, so the textbook standard errors are too small. Compare them with statsmodels' heteroskedasticity and autocorrelation consistent (HAC) standard errors, and note which conclusions change.

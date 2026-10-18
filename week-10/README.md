@@ -1,16 +1,16 @@
-# Week 10: Why won't it train?
+# Week 10: How does a neural net learn?
 
 ## Reading (3 hours)
 
-Karpathy video 4 (activations, gradients, BatchNorm).
+Karpathy, Neural Networks: Zero to Hero, video 1 (micrograd) and video 2 (makemore, bigrams). The CS231n backprop notes help with video 1: https://cs231n.github.io/optimization-2/
 
 ## From scratch (1.5 hours, AI off)
 
-BatchNorm forward and backward in numpy, checked against PyTorch. Then rewrite the week 9 model with `nn.Module`, a `Dataset` and a `DataLoader`, and save and reload it with `state_dict`.
+Micrograd from memory: a scalar value class with add, multiply, tanh and backward, with gradients checked against PyTorch autograd. Then a small MLP in PyTorch: weight tensors, a forward pass, `loss.backward()` and an optimiser step.
 
 ## Experiment (3.5 hours)
 
-Break your week 9 model three ways (learning rate too high, bad initialisation, no scaling). Diagnose each from the loss curve and activation statistics alone.
+Train the MLP on `features.py` to predict day D's 48 prices, and compare it with LightGBM and ridge in the backtest.
 
 ## Write-up (2 hours)
 
@@ -18,4 +18,4 @@ Break your week 9 model three ways (learning rate too high, bad initialisation, 
 
 ## The fiddly bit
 
-BatchNorm behaves differently in training and evaluation. Scoring in training mode gives the wrong numbers.
+Gradients add up when a value is used twice, so forgetting `+=` is the classic micrograd bug. Scale inputs and targets for the MLP, and undo the scaling before scoring.

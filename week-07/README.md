@@ -1,16 +1,16 @@
-# Week 07: Is the ML model better than classical statistics?
+# Week 07: Do trees do better?
 
 ## Reading (3 hours)
 
-Hyndman chapter 8 (exponential smoothing) and chapter 9 (ARIMA).
+ISLP chapter 8 (trees, bagging, random forests, boosting).
 
 ## From scratch (1.5 hours, AI off)
 
-Holt-Winters as a PyTorch recursion over the series. Fit its three smoothing parameters with `torch.optim.Adam`, keeping each between 0 and 1 by passing an unconstrained tensor through `sigmoid`.
+One decision tree split in PyTorch: given a feature column and targets, find the threshold that most reduces squared error, using `cumsum` to score every threshold at once.
 
 ## Experiment (3.5 hours)
 
-Fit ETS and ARIMA with statsforecast. Add them to the comparison table with point and interval scores.
+Add LightGBM (`uv add lightgbm`) and train it on `features.py`. Compare it with ridge overall and on the spike slice from week 6, and read its feature importances.
 
 ## Write-up (2 hours)
 
@@ -18,4 +18,4 @@ Fit ETS and ARIMA with statsforecast. Add them to the comparison table with poin
 
 ## The fiddly bit
 
-A 48-period season on a year of data is a lot of parameters for ETS. Compare against a model on daily averages.
+Trees cannot predict outside the range of prices they were trained on. Check what happens on the highest-priced days.

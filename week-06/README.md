@@ -1,16 +1,16 @@
-# Week 06: How sure is the forecast?
+# Week 06: Am I fooling myself?
 
 ## Reading (3 hours)
 
-Hyndman chapter 5.9 (distributional accuracy: quantile scores, Winkler score, CRPS).
+ISLP chapter 5 (resampling methods): cross-validation and the bootstrap.
 
 ## From scratch (1.5 hours, AI off)
 
-Pinball loss as a PyTorch function. Train a linear model on it with three outputs, one per quantile. Then split-conformal intervals around any point forecast.
+`features.py`: lag features for day D built only from data published before 12:00 UTC on D-1. Write a test that builds a feature from the D-1 afternoon on purpose and fails. Then a function that slices backtest errors by period of day, weekday, month and spike days.
 
 ## Experiment (3.5 hours)
 
-Train LightGBM with a quantile objective for the 10th, 50th and 90th percentiles. Report pinball loss and the share of actual prices inside the 80% interval.
+Rebuild weeks 3 and 5 on `features.py`, and check whether any score drops. Find the three slices where the best model is worst, and write one hypothesis for each.
 
 ## Write-up (2 hours)
 
@@ -18,4 +18,4 @@ Train LightGBM with a quantile objective for the 10th, 50th and 90th percentiles
 
 ## The fiddly bit
 
-Conformal intervals assume the calibration days look like the test days. Price regimes shift, so check coverage month by month.
+Elexon revises imbalance prices after first publishing them. The price you train on may not be the price that was visible at 12:00 on D-1.
