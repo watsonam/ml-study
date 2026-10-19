@@ -4,3 +4,4 @@ __pycache__/
 week-*/data/
 data/
 .DS_Store
+__marimo__/
