@@ -18,6 +18,10 @@ The full plan is in `README.md`, and each week's brief is in `week-NN/README.md`
 
 Each week has 10 hours: 3 reading, 3.5 experiment, 1.5 from scratch in PyTorch, 2 write-up. Reading suits the Monday and Wednesday commute on the iPad or phone. Problem sets from Blitzstein and Hwang come in weeks 4, 8 and 12.
 
+## Progress log
+
+`log.md` records each sitting: date, step, hours, what was done and the questions worked through. At the end of a sitting, when Adam asks to log it, add a row, update the week total and the next sitting, and commit only `log.md`. Adam commits his own notes and code.
+
 ## State on 2026-10-19
 
 - `fetch.py` downloads a year of Elexon system prices to `data/gb_imbalance.parquet` (17,520 rows, 18 Oct 2025 to 17 Oct 2026). `data/` is ignored by git.
