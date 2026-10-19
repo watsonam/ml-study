@@ -15,3 +15,9 @@
 ## Overfitting, and how training and test error behave as a model gets more flexible
 
 ## Five-sentence explanation: why a random train/test split is wrong for a forecast
+
+## Clock-change days: my decision
+
+## Why not "same period one day back"?
+
+## The last settlement period known at 12:00 UTC, winter and summer

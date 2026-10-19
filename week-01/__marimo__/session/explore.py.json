@@ -1,0 +1,54 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.25.1",
+    "script_metadata_hash": null
+  },
+  "cells": [
+    {
+      "id": "4264ec6d-b050-47c5-a79f-d34b8591339e",
+      "code_hash": "5c2ce1b59b8e4b75aca01b6f42c8b827",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "9834407a-3da3-4c8e-b6b8-ec1fe88b1fca",
+      "code_hash": "6a8d57c30a2311fa24315e0903c6ed75",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "feef5e3b-0005-4b7c-a3dd-bc4144d4f84f",
+      "code_hash": "bc0ebe4ef58e1b5ee43471c559d79b09",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='feef5e3b-0005-4b7c-a3dd-bc4144d4f84f-0' random-id='1b1ff475-41f3-85c3-119d-a83f213e9033'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-18 23:00:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:1,&#92;&quot;price&#92;&quot;:97.0,&#92;&quot;niv&#92;&quot;:48.633988333333335},{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-18 23:30:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:2,&#92;&quot;price&#92;&quot;:47.2,&#92;&quot;niv&#92;&quot;:-50.26133347222222},{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-19 00:00:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:3,&#92;&quot;price&#92;&quot;:98.29999999999998,&#92;&quot;niv&#92;&quot;:50.760666666666665},{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-19 00:30:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:4,&#92;&quot;price&#92;&quot;:61.15999999999999,&#92;&quot;niv&#92;&quot;:34.20001027777778},{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-19 01:00:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:5,&#92;&quot;price&#92;&quot;:61.06,&#92;&quot;niv&#92;&quot;:7.953252222222222},{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-19 01:30:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:6,&#92;&quot;price&#92;&quot;:37.82999999999999,&#92;&quot;niv&#92;&quot;:-10.716665833333334},{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-19 02:00:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:7,&#92;&quot;price&#92;&quot;:76.43,&#92;&quot;niv&#92;&quot;:51.0499975},{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-19 02:30:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:8,&#92;&quot;price&#92;&quot;:75.99,&#92;&quot;niv&#92;&quot;:101.03333333333333},{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-19 03:00:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:9,&#92;&quot;price&#92;&quot;:75.79,&#92;&quot;niv&#92;&quot;:17.521944444444443},{&#92;&quot;start_utc&#92;&quot;:&#92;&quot;2025-10-19 03:30:00+00:00&#92;&quot;,&#92;&quot;settlement_date&#92;&quot;:&#92;&quot;2025-10-19&#92;&quot;,&#92;&quot;period&#92;&quot;:10,&#92;&quot;price&#92;&quot;:59.64,&#92;&quot;niv&#92;&quot;:-78.99996291666666}]&quot;' data-total-rows='17520' data-total-columns='5' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;start_utc&quot;,[&quot;datetime&quot;,&quot;datetime[ns, UTC]&quot;]],[&quot;settlement_date&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;period&quot;,[&quot;integer&quot;,&quot;i64&quot;]],[&quot;price&quot;,[&quot;number&quot;,&quot;f64&quot;]],[&quot;niv&quot;,[&quot;number&quot;,&quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-search='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "03246db9-cf6f-43d2-bc0c-25a0a0f656bb",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

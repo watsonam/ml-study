@@ -1,60 +1,108 @@
 # Week 01: How will I know a forecast is good?
 
-This week builds the code that scores every later model, and shows the core idea of fitting a model to data.
+## The ask
 
-## Reading (3 hours)
+By Sunday you will have forecast tomorrow's GB imbalance price with three simple rules, and measured how wrong each rule is over about ten months. You will not build a model yet. The best rule's error becomes the number every model has to beat from week 3 onward.
 
-Hyndman, Forecasting: Principles and Practice, the Pythonic Way, chapter 5 (the forecaster's toolbox): https://otexts.com/fpppy/05-toolbox.html
+On the way you write two small pieces of PyTorch: a scorer for forecasts, and a curve fit that shows what fitting and overfitting look like.
 
-Focus on the simple methods (5.2), residuals (5.3 and 5.4), forecast accuracy measures (5.8) and time series cross-validation (5.10). Leave 5.9 (distributional accuracy) for week 8.
+## The problem in one line
 
-Bishop 1.1 (polynomial curve fitting), about 30 minutes. It explains fitting by minimising squared error, and overfitting, in ten pages.
+At 12:00 UTC on day D-1, forecast the price for each of the 48 half-hours of day D.
 
-## The setup
+## The steps, in order
 
-Run `uv run python fetch.py` from the repo root. It writes `data/gb_imbalance.parquet`: one row per half-hour, with `start_utc`, `settlement_date`, `period` (1 to 48), `price` (GBP/MWh) and `niv` (net imbalance volume, MWh).
+### Step 0: set up (15 minutes, Sunday or Monday morning)
 
-The forecast is made at 12:00 UTC on day D-1, for all periods of day D.
+From the repo root:
 
-Split the year once, now, and do not change it:
+```bash
+uv sync
+```
 
-- Validation: everything before the last 61 days. Backtest and compare models here.
-- Test: the last 61 days. Do not score anything on it until week 12.
+```bash
+uv run python fetch.py
+```
 
-## From scratch (1.5 hours, AI off)
+```bash
+uv run pytest week-01
+```
 
-Write two files in PyTorch only, with no pandas or numpy, so that `uv run pytest week-01` passes.
+The tests fail with "No module named backtest". That is expected: steps 3 and 4 make them pass.
 
-`week-01/backtest.py`:
+### Step 1: read on the Monday commute (1.5 hours)
+
+- Hyndman chapter 1, skimmed: https://otexts.com/fpppy/01-intro.html
+- Hyndman 5.1 to 5.4 (simple forecasting methods, residuals): https://otexts.com/fpppy/05-toolbox.html
+
+Write the first headings of `notes.md` in your own words.
+
+### Step 2: read on the Wednesday commute (1.5 hours)
+
+- Hyndman 5.8 (accuracy measures) and 5.10 (time series cross-validation). Skip 5.9.
+- Bishop 1.1, pages 4 to 10, stopping where regularisation starts. It is on your Google Drive.
+
+Finish `notes.md`, including the five-sentence explanation at the bottom.
+
+### Step 3: write `backtest.py` (45 minutes, laptop, AI off)
+
+In PyTorch only:
 
 - `rolling_origin_splits(n_days, initial, horizon=1, step=1)` returns a list of `(train_idx, test_idx)` pairs of day indices. Training always ends before testing starts, and the training window grows by `step` each fold.
 - `mae(y, y_hat)` and `rmse(y, y_hat)` take tensors and return a float.
 
-`week-01/curve_fit.py`:
+Done when `uv run pytest week-01/test_backtest.py` passes.
 
-- `fit_polynomial(x, y, degree)` returns the coefficients that minimise squared error. Build the design matrix (columns 1, x, x squared, up to the degree) and solve it with `torch.linalg.lstsq`.
+### Step 4: write `curve_fit.py` (45 minutes, laptop, AI off)
+
+In PyTorch only:
+
+- `fit_polynomial(x, y, degree)` returns the coefficients that minimise squared error. Build a matrix with columns 1, x, x squared, up to the degree, and solve it with `torch.linalg.lstsq`.
 - `predict_polynomial(coefs, x)` returns the fitted values.
 
-The PyTorch skills this week are `torch.tensor` and `torch.arange`, dtypes (`float32` against `float64`), indexing and slicing, stacking columns into a matrix, and `.item()`.
+Done when `uv run pytest week-01` passes in full (14 tests).
 
-## Experiment (3.5 hours)
+### Step 5: the overfitting chart (1 hour, laptop)
 
-First, reproduce Bishop's figure 1.5 (about 1 hour). Take 10 points of sin(2 pi x) plus noise for training and 100 for testing. Fit polynomials of degree 0 to 9 with your `fit_polynomial`, and plot training and test RMSE against degree. The test error rising while the training error falls is overfitting, and it is the reason the test months stay locked.
+Reproduce Bishop's figure 1.5. Make 10 training points and 100 test points of sin(2 pi x) plus noise. Fit degrees 0 to 9 with your `fit_polynomial`, and plot training and test RMSE against degree. Save the chart in `week-01/`.
 
-Then build three baselines and score each one with your backtest over the validation period:
+Done when the chart shows test error rising at high degree while training error keeps falling.
 
-- Last known: every period of D gets the last price published before 12:00 on D-1.
-- Same period two days back: period p of D gets period p of D-2.
-- Same period a week back: period p of D gets period p of D-7.
+### Step 6: the three forecasts (2.5 hours, laptop)
 
-Load the parquet file with pandas, then move the prices into a tensor and `view` it as days by 48 periods. Each baseline is then one line of tensor indexing, and broadcasting scores all days at once.
+1. Load `data/gb_imbalance.parquet` with pandas, and put the prices in a PyTorch tensor.
+2. Split it once: the last 61 days are the test set and stay unscored until week 12. Everything before is validation.
+3. Decide how to handle the two days without 48 periods (26 October 2025 has 50, 29 March 2026 has 46). Write the decision in `notes.md`.
+4. Forecast every validation day three ways:
+   - Last known: all 48 periods of D get the last price published before 12:00 UTC on D-1.
+   - Two days back: period p of D gets period p of D-2.
+   - A week back: period p of D gets period p of D-7.
+5. Score each with your `mae` and `rmse`, and add one row per rule to `experiments.md`.
 
-Log each baseline as a row in `experiments.md`. The best of the three is the number every model must beat from now on.
+Done when `experiments.md` has three rows and you know which rule is best.
 
-## Write-up (2 hours)
+### Step 7: write up and publish (2 hours, Sunday)
 
-Fill in `writeup.md`. Include the overfitting chart and one chart of a validation week with the actual price and the best baseline.
+Fill in `writeup.md` with the overfitting chart, a chart of one validation week (actual price against the best rule), and the three scores. Then commit and push:
 
-## The fiddly bit
+```bash
+git add -A && git commit -m "Week 1: backtest, curve fit and baselines" && git push
+```
 
-Two days a year do not have 48 periods. In this year of data, 26 October 2025 has 50 and 29 March 2026 has 46, because of the clock changes. They break the days-by-48 view, so decide how your backtest and the "same period" baselines handle them, and write the decision down. Also work out why "same period one day back" is missing from the list above, and what the 12:00 cut-off means for it.
+## Done by Sunday 25 October
+
+| Check | Where |
+|---|---|
+| 14 tests pass | `uv run pytest week-01` |
+| Overfitting chart saved | `week-01/` |
+| Three baselines scored | `experiments.md` |
+| Notes, with the clock-change decision | `week-01/notes.md` |
+| Write-up with both charts | `week-01/writeup.md` |
+| Everything pushed | github.com/watsonam/ml-study |
+
+If the week goes badly, do steps 0 and 3 only.
+
+## Questions to answer in your notes
+
+- Why is "same period one day back" not one of the three rules? Think about what is published by 12:00 UTC on D-1.
+- 12:00 UTC is 13:00 UK time in summer. Which settlement period is the last one known at the cut-off, and does it change with the season?
