@@ -8,6 +8,7 @@ from backtest import mae, rmse, rolling_origin_splits
 
 
 def test_training_always_ends_before_testing():
+    print("")
     for train, test in rolling_origin_splits(30, initial=10, horizon=2, step=3):
         assert max(train) < min(test)
 

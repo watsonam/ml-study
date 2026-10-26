@@ -17,12 +17,35 @@ def _():
 @app.cell
 def _(DATA_FOLDER, pl):
     imbalance = pl.read_parquet(DATA_FOLDER / "gb_imbalance.parquet")
-    return (imbalance,)
+    return
 
 
 @app.cell
-def _(imbalance):
-    imbalance
+def _():
+    ## if (n_days: int, initial: int, horizon: int = 1, step: int = 1)
+    import torch
+    n_days = 30
+    initial = 10
+    horizon = 2
+    step = 3
+
+    cv_splits = [torch.arange(0, initial), torch.arange(initial,initial+ horizon)]
+    print(cv_splits)
+    fold_start = initial
+    while fold_start < (n_days - 1) - horizon:
+        split = [torch.arange(0, fold_start + step), torch.arange(fold_start + step,fold_start + step + horizon)]
+        cv_splits.append(split)
+        print(split)
+        fold_start += step
+
+
+    return
+
+
+@app.cell
+def _():
+    from backtest import rolling_origin_splits
+    rolling_origin_splits(30, initial=10, horizon=2, step=3)
     return
 
 
