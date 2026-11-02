@@ -1,6 +1,6 @@
 # Handover
 
-This repo is Adam's twelve-week study of statistics, time series and machine learning basics, from a quant and data science point of view. It started on 2026-10-18 in a session in the balancing-services-analytics repo. Week 1 ran from Monday 19 October and was extended by a week to Sunday 1 November 2026, so every later week starts one week later than first planned (week 2 starts Monday 2 November).
+This repo is Adam's twelve-week study of statistics, time series and machine learning basics, from a quant and data science point of view. It started on 2026-10-18 in a session in the balancing-services-analytics repo. Week 1 ran from Monday 19 October and was extended twice, to Sunday 8 November 2026, with steps 4 and 6 as the minimum to finish it. Every later week starts two weeks later than first planned (week 2 starts Monday 9 November).
 
 ## How to help
 

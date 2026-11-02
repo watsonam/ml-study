@@ -89,7 +89,9 @@ Fill in `writeup.md` with the overfitting chart, a chart of one validation week 
 git add -A && git commit -m "Week 1: backtest, curve fit and baselines" && git push
 ```
 
-## Done by Sunday 1 November (extended from 25 October)
+## Done by Sunday 8 November (extended from 25 October, then 1 November)
+
+The minimum to close week 1 is steps 4 and 6.
 
 | Check | Where |
 |---|---|

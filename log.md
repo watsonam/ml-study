@@ -12,6 +12,7 @@ One row per sitting. The weekly target is 10 hours.
 | Date | What happened | Change |
 |---|---|---|
 | 2026-10-28 | Week 1 not finished by Sunday 25 October | Week 1 extended to Sunday 1 November; every later week moves one week later, so week 2 starts Monday 2 November |
+| 2026-11-02 | No sittings between 27 October and 1 November; steps 2, 4, 5, 6 and 7 still open | Week 1 extended again to Sunday 8 November, with steps 4 and 6 as the minimum; week 2 starts Monday 9 November |
 
 ## Week totals
 
@@ -21,4 +22,4 @@ One row per sitting. The weekly target is 10 hours.
 
 ## Next sitting
 
-Step 2: Hyndman 5.8 and 5.10, and Bishop 1.1 pages 4 to 10. Then step 4: `curve_fit.py` until all 14 tests pass. The minimum to finish week 1 is steps 4 and 6.
+Step 4: `curve_fit.py` until all 14 tests pass (45 minutes), then step 6: the three baselines scored and logged in `experiments.md` (2.5 hours). Those two close week 1 by Sunday 8 November. Step 2's reading (Hyndman 5.8 and 5.10, Bishop 1.1) helps with both if there is commute time.
